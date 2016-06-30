@@ -19,17 +19,19 @@ class SampleModel {
     }
 
     public function selectSample() {
-        $this->m->set('aaa', 'bbb', 300);
-        echo $this->m->get('aaa');
-        $this->db->usetable('users'); 
-        $this->db->where(['id', '>', '1']);
-        $this->db->order(['id', 'desc']);
-        $result =  $this->db->find(2);
-        var_dump($result);
-//        $result = $this->db->add(
-//                    ['name'=>'22222','hah'=>'111','xxx'=>'xxx']
-//                );
-//        return $result;  
+   //     $this->m->set('aaa', 'bbb', 300);
+   //     echo $this->m->get('aaa');
+//        $this->db->usetable('users'); 
+//        $this->db->where(['id', '>', '1']);
+//        $this->db->order(['id', 'desc']);
+      //  $result = $this->db->usetable('users')->where(['id', '>', '1'])->order(['id', 'desc'])->get();
+        //    $result =  $this->db->find(2);
+      //  exit;
+        $result = $this->db->usetable('users')->add(
+                    ['name'=>'22222','hah'=>'111','xxx'=>'xxx']
+                );
+       // var_dump($result);
+        return $result;  
     }
 
     public function insertSample($arrInfo) {
