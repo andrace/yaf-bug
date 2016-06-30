@@ -67,6 +67,7 @@ class Db {
             }
             $this->column = rtrim($this->column, ',');
         }
+        return $this;
     }
 
     public function find($id) {
@@ -74,7 +75,6 @@ class Db {
         $this->where = 'id = ' . $id;
         $this->sqlAction();
         $result = $this->execsql()->fetch_assoc();
-        ;
         $this->resetThis();
         return $result;
     }
@@ -165,6 +165,7 @@ class Db {
             }
         }
         $this->where = rtrim($this->where, 'and ');
+        return $this;
     }
 
     public function whereIn($array) {
@@ -183,11 +184,13 @@ class Db {
                 $this->order .= $v . ' ';
             }
         }
+         return $this;
     }
 
     public function limit($want = 1, $begin = 0) {
         $this->setLimit = ' limit ';
         $this->limit = $begin . ',' . $want;
+         return $this;
     }
 
     public function sepWhere($array) {

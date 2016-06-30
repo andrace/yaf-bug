@@ -32,7 +32,18 @@ class Bootstrap extends Yaf_Bootstrap_Abstract {
         $this->_connect = new MysqlConnect(Yaf_Registry::get('mysql_config'));
         Yaf_Registry::set('connect', $this->_connect->init());
     }
+    public function _initRedisConnect(Yaf_Dispatcher $dispatcher) {
+        $redis = new Redis();
+        $redis->connect($this->_config['redis']['host'], $this->_config['redis']['port']);
+        Yaf_Registry::set('redis', $redis);
+    }
 
+    public function _initMemcached(){
+        $mc = new Memcached(); 
+        $mc->addServer($this->_config['memcached']['host'], $this->_config['memcached']['port']); 
+        Yaf_Registry::set('memcached', $mc);
+    }
+    
     public function _initView(Yaf_Dispatcher $dispatcher) {
         //在这里注册自己的view控制器，例如smarty,firekylin
     }
